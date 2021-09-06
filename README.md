@@ -14,23 +14,12 @@ Three questions will guide the future marketing program:
 “How to influence causal riders to become members using digital media”
 
 ## PREPARE
-- Data is located on this link.
+- Data is located on this link
+- The size of this data is 473.98 MB
+- Overall there is 3,651,474 rows and 12 column on this data and  
 - Data is separated by months and the most update data was on may 2021
-- Overall there is 3,651,474 rows in this data and the size of this data is 473.98 MB 
-- These are type of each column
 
-Field name	   Type	
-ride_id      	STRING	
-rideable_type	STRING	
-started_at	TIMESTAMP	
-ended_at	TIMESTAMP	
-start_station_name	STRING	
-start_station_id	INTEGER	
-end_station_name	STRING	
-end_station_id	INTEGER	
-start_lat	FLOAT	
-start_lng	FLOAT	
-end_lat	FLOAT	
+Table preview
 
 
 <!--
