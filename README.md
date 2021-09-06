@@ -16,11 +16,17 @@ Three questions will guide the future marketing program:
 ## PREPARE
 - Data is located on this link
 - The size of this data is 473.98 MB
-- Overall there is 3,651,474 rows and 12 column on this data and  
-- Data is separated by months and the most update data was on may 2021
+- Overall there is 3,651,474 rows and 12 column on this data
+- There is 12 .csv file that separated by months and the most update data was on may 2021
 
-Table preview
+**Data Preview**
+![data_preview](https://user-images.githubusercontent.com/90141628/132163032-99b5383d-ea7b-4b22-b565-92de1623280b.PNG)
 
+## PROCESS
+**Tools**
+- SQL (BigQuery) for cleaning and format data.
+- R studio to analyze and make data visualization.
+- Tableau to make interactive dashboard
 
 <!--
 **rammadhan/rammadhan** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
