@@ -28,17 +28,40 @@ Three questions will guide the future marketing program:
 - R studio to analyze and make data visualization.
 - Tableau to make interactive dashboard
 
-<!--
-**rammadhan/rammadhan** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+**Data Cleaning Process**
+- I combined 12 table for each month into 1  single table
+- I added ride duration column as duration 
+- I removed start_station_id and end_station_id because I allready used station name column
+- I removed start_lat, start_lng, end_lat,and end_lng because data inconsistency on these column
 
-Here are some ideas to get you started:
+```
+CREATE TABLE analyzing-data-319917.bike_capstone_project.year_trip AS
+SELECT *,
+    date_diff(ended_at, started_at, minute) duration_second
+FROM (
+    SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2020_05 UNION ALL 
+    SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2020_06 UNION ALL
+    SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2020_07 UNION ALL
+    SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2020_09 UNION ALL
+    SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2020_10 UNION ALL
+    SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2020_11 UNION ALL
+    SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2020_12 UNION ALL
+    SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2021_01 UNION ALL
+    SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2021_02 UNION ALL
+    SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2021_03 UNION ALL
+    SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2021_04 UNION ALL
+    SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2021_05 )
+```
+After combined data was created we check for null on this data
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+```
+SELECT
+    SUM(CASE WHEN ride_id IS NULL THEN 1 ELSE 0 END) AS ride_id_null,
+    SUM(CASE WHEN rideable_type IS NULL THEN 1 ELSE 0 END) AS rideable_type_null,
+    SUM(CASE WHEN started_at IS NULL THEN 1 ELSE 0 END) AS started_at_null,
+    SUM(CASE WHEN ended_at IS NULL THEN 1 ELSE 0 END) AS ended_at_null,
+    SUM(CASE WHEN start_station_name IS NULL THEN 1 ELSE 0 END) AS start_station_null,
+    SUM(CASE WHEN end_station_name IS NULL THEN 1 ELSE 0 END) AS end_station_null,
+    SUM(CASE WHEN member_casual IS NULL THEN 1 ELSE 0 END) AS start_station_null
+FROM  analyzing-data-319917.bike_capstone_project.year_trip
+```
