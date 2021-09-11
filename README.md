@@ -147,3 +147,20 @@ SELECT COUNT(duration_minute)
 FROM analyzing-data-319917.bike_capstone_project.year_trip_clean
 WHERE duration_minute < 1
 ```
+## ANALYZE
+For interactive dashboard in Tableau Public click on this [link](https://public.tableau.com/app/profile/rizky.ramadhan5281/viz/cyclistic_16312552520290/Dashboard1#1)
+
+**Differences Between Member and Casual**
+```
+SELECT 
+    COUNT(ride_id) num_of_ride,
+    AVG(duration_minute) avg_duration_minute,
+    SUM(duration_minute)/60 total_duration_hour,
+    SUM(CASE WHEN ride_day = "weekday" THEN 1 ELSE 0 END)/ COUNT(ride_day) * 100 weekday_ride_percentage,
+    SUM(CASE WHEN ride_day = "weekend" THEN 1 ELSE 0 END)/ COUNT(ride_day) * 100 weekend_ride_percentage 
+FROM analyzing-data-319917.bike_capstone_project.year_trip_clean
+GROUP BY member_casual
+```
+Result 
+
+![member_casual_diff](https://user-images.githubusercontent.com/90141628/132940802-5f2d6b35-b8e6-43f7-a8fc-2b186330b907.PNG)
