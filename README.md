@@ -150,7 +150,6 @@ WHERE duration_minute < 1
 ## ANALYZE
 For interactive dashboard in Tableau Public click on this [link](https://public.tableau.com/app/profile/rizky.ramadhan5281/viz/cyclistic_16312552520290/Dashboard1#1)
 
-**Differences Between Member and Casual**
 ```
 SELECT 
     COUNT(ride_id) num_of_ride,
@@ -164,3 +163,31 @@ GROUP BY member_casual
 Result 
 
 ![member_casual_diff](https://user-images.githubusercontent.com/90141628/132940802-5f2d6b35-b8e6-43f7-a8fc-2b186330b907.PNG)
+
+- **Number of Ride**
+
+![num_of_ride](https://user-images.githubusercontent.com/90141628/132942971-9be9fa9a-3eb2-46e0-bdf7-7bf210bef754.PNG)
+ 
+- **Total Duration (Hour)**
+
+![total_duration](https://user-images.githubusercontent.com/90141628/132943105-5d04bbb2-4e8d-4ae3-8e55-1518fd635e78.PNG)
+
+- **Average Duration (Minute)**
+
+![avg_duration](https://user-images.githubusercontent.com/90141628/132943158-4e1d2b59-69b6-4f13-b87e-750deac64378.PNG)
+
+- **Day Ride**
+
+![ride_day](https://user-images.githubusercontent.com/90141628/132943046-6549c2a2-e39e-4fe6-99ca-7a24fa8fa91b.PNG)
+
+- **Day to Day Ride**
+
+![day to day](https://user-images.githubusercontent.com/90141628/132943652-f9a181c3-be5d-4dbf-a8ce-25e16fea9ebc.PNG)
+
+### SUMMARY
+**Differences Between Member and Casual**
+- Member has more trip rather than casual, but if we looks in Total Duration and Average Duration chart, casual has more duration in using bike with 44 minutes for single trip in avareage
+- On day to Day chart we know that casual rider trip in weekend has a significant increase, we can make a conclusion this ride trip is for pleasure. 
+
+
+
