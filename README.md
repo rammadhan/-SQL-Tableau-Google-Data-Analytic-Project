@@ -14,7 +14,7 @@ Three questions will guide the future marketing program:
 “How to influence causal riders to become members using digital media”
 
 ## PREPARE
-- Data is located on this link
+- Data is located on this [link](https://divvy-tripdata.s3.amazonaws.com/index.html)
 - The size of this data is 473.98 MB
 - Overall there is 3,651,474 rows and 12 column on this data
 - There is 12 .csv file that separated by months and the most update data was on may 2021
