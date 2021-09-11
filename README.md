@@ -29,10 +29,10 @@ Three questions will guide the future marketing program:
 - Tableau to make interactive dashboard
 
 **Data Cleaning Process**
-- I combined 12 table for each month into 1  single table
-- I added ride duration column as duration 
-- I removed start_station_id and end_station_id because I allready used station name column
-- I removed start_lat, start_lng, end_lat,and end_lng because data inconsistency on these column
+- Combined 12 table for each month into 1  single table
+- Added ride duration column as duration 
+- Removed start_station_id and end_station_id because I allready used station name column
+- Removed start_lat, start_lng, end_lat,and end_lng because data inconsistency on these column
 
 ```
 CREATE TABLE analyzing-data-319917.bike_capstone_project.year_trip AS
@@ -52,7 +52,7 @@ FROM (
     SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2021_04 UNION ALL
     SELECT * EXCEPT (start_station_id, end_station_id, start_lat, end_lat, start_lng, end_lng) FROM analyzing-data-319917.bike_capstone_project.2021_05 )
 ```
-After combined data was created we check for null on this data
+After combined data was created, we check for null on this data
 
 ```
 SELECT
@@ -72,4 +72,75 @@ SELECT
     (SUM(CASE WHEN start_station_name IS NULL THEN 1 ELSE 0 END)) / Count(start_station_name) * 100 end_station_null_percentage,
     (SUM(CASE WHEN end_station_name IS NULL THEN 1 ELSE 0 END)) / Count(start_station_name) * 100 start_station_null_percentage 
 FROM  analyzing-data-319917.bike_capstone_project.year_trip
+```
+![nul_percentage](https://user-images.githubusercontent.com/90141628/132937724-bc799a96-188e-42a3-bac6-cd08b028616d.PNG)
+
+From those query, we know that only start_station_name (5,62%) and end_station_name (6.35%) that has null value
+
+Next we check for duplicated data by using ride_id as an unique constraint
+
+```
+SELECT ride_id, count (ride_id)
+FROM analyzing-data-319917.bike_capstone_project.year_trip
+GROUP BY ride_id
+HAVING count(ride_id) > 1
+```
+From this query we can knwow that there is 209 duplicates data
+
+From data source we know that trip duration must be at least 60 seconds/1 minute. There is 59.575 data on trip_duration column that is below 1 minute.
+```
+SELECT COUNT(duration_second)
+FROM analyzing-data-319917.bike_capstone_project.year_trip
+WHERE duration_second < 60
+```
+Next we do cleaning process with a single query into a new clean table. I also add ride_day column to identify whether the trip is done on weekdays or weekends.
+```
+CREATE TABLE analyzing-data-319917.bike_capstone_project.year_trip_clean AS 
+    SELECT 
+        ride_id,
+        rideable_type,
+        CAST(started_at AS DATE) started_date, 
+        CAST(started_at AS TIME) started_time,
+        start_station_name,
+        end_station_name,
+        member_casual,
+        duration_minute,
+        CASE WHEN day_of_week BETWEEN 2 AND 6 THEN "weekday" ELSE "weekend" END ride_day
+    FROM 
+    (
+        SELECT 
+            *,
+            EXTRACT(DAYOFWEEK FROM started_at) day_of_week,
+            ROW_NUMBER()
+            OVER (PARTITION BY ride_id) AS row_number 
+        FROM analyzing-data-319917.bike_capstone_project.year_trip )
+    WHERE 
+        row_number = 1 AND
+        duration_minute >= 1 AND
+        start_station_name IS NOT NULL AND 
+        end_station_name IS NOT NULL
+```
+And then, we double check to ensure is our data really clean or not with previous query.
+```
+*Check for Null*
+SELECT
+    SUM(CASE WHEN ride_id IS NULL THEN 1 ELSE 0 END) AS ride_id_null,
+    SUM(CASE WHEN rideable_type IS NULL THEN 1 ELSE 0 END) AS rideable_type_null,
+    SUM(CASE WHEN started_at IS NULL THEN 1 ELSE 0 END) AS started_at_null,
+    SUM(CASE WHEN ended_at IS NULL THEN 1 ELSE 0 END) AS ended_at_null,
+    SUM(CASE WHEN start_station_name IS NULL THEN 1 ELSE 0 END) AS start_station_null,
+    SUM(CASE WHEN end_station_name IS NULL THEN 1 ELSE 0 END) AS end_station_null,
+    SUM(CASE WHEN member_casual IS NULL THEN 1 ELSE 0 END) AS start_station_null
+FROM  analyzing-data-319917.bike_capstone_project.year_trip_clean
+
+*Check for Duplicates*
+SELECT ride_id, count (ride_id)
+FROM analyzing-data-319917.bike_capstone_project.year_trip_clean
+GROUP BY ride_id
+HAVING count(ride_id) > 1
+
+*Check for Duration Below 1 Minute*
+SELECT COUNT(duration_minute)
+FROM analyzing-data-319917.bike_capstone_project.year_trip_clean
+WHERE duration_minute < 1
 ```
