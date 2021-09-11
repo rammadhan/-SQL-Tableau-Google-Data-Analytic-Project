@@ -65,3 +65,11 @@ SELECT
     SUM(CASE WHEN member_casual IS NULL THEN 1 ELSE 0 END) AS start_station_null
 FROM  analyzing-data-319917.bike_capstone_project.year_trip
 ```
+![null](https://user-images.githubusercontent.com/90141628/132937672-2acef97f-9c40-4b97-9d6d-54f888af5c3e.PNG)
+
+```
+SELECT
+    (SUM(CASE WHEN start_station_name IS NULL THEN 1 ELSE 0 END)) / Count(start_station_name) * 100 end_station_null_percentage,
+    (SUM(CASE WHEN end_station_name IS NULL THEN 1 ELSE 0 END)) / Count(start_station_name) * 100 start_station_null_percentage 
+FROM  analyzing-data-319917.bike_capstone_project.year_trip
+```
