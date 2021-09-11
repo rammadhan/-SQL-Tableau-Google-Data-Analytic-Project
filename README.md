@@ -185,9 +185,13 @@ Result
 ![day to day](https://user-images.githubusercontent.com/90141628/132943652-f9a181c3-be5d-4dbf-a8ce-25e16fea9ebc.PNG)
 
 ### SUMMARY
-**Differences Between Member and Casual**
+**How do annual members and casual riders use Cyclistic bikes differently?**
 - Member has more trip rather than casual, but if we looks in Total Duration and Average Duration chart, casual has more duration in using bike with 44 minutes for single trip in avareage
-- On day to Day chart we know that casual rider trip in weekend has a significant increase, we can make a conclusion this ride trip is for pleasure. 
+- Ratio of bicycles types used tends to be the same between Casual and Member.
+- Casual rider trip in weekend has a significant increase while the number of member trips tends to stay the same from day to day
+
+**Why would casual riders buy Cyclistic annual memberships?**
+
 
 
 
