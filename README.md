@@ -122,7 +122,8 @@ CREATE TABLE analyzing-data-319917.bike_capstone_project.year_trip_clean AS 
 ```
 And then, we double check to ensure is our data really clean or not with previous query.
 ```
-*Check for Null*
+-- Check for Null --
+
 SELECT
     SUM(CASE WHEN ride_id IS NULL THEN 1 ELSE 0 END) AS ride_id_null,
     SUM(CASE WHEN rideable_type IS NULL THEN 1 ELSE 0 END) AS rideable_type_null,
@@ -133,13 +134,15 @@ SELECT
     SUM(CASE WHEN member_casual IS NULL THEN 1 ELSE 0 END) AS start_station_null
 FROM  analyzing-data-319917.bike_capstone_project.year_trip_clean
 
-*Check for Duplicates*
+-- Check for Duplicates --
+
 SELECT ride_id, count (ride_id)
 FROM analyzing-data-319917.bike_capstone_project.year_trip_clean
 GROUP BY ride_id
 HAVING count(ride_id) > 1
 
-*Check for Duration Below 1 Minute*
+-- Check for Duration Below 1 Minute --
+
 SELECT COUNT(duration_minute)
 FROM analyzing-data-319917.bike_capstone_project.year_trip_clean
 WHERE duration_minute < 1
