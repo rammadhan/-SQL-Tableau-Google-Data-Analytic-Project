@@ -188,10 +188,44 @@ Result
 **How do annual members and casual riders use Cyclistic bikes differently?**
 - Member has more trip rather than casual, but if we looks in Total Duration and Average Duration chart, casual has more duration in using bike with 44 minutes for single trip in avareage
 - Ratio of bicycles types used tends to be the same between Casual and Member.
-- Casual rider trip in weekend has a significant increase while the number of member trips tends to stay the same from day to day
+- Casual rider trip in weekend has a significant increase, while the number of member rider trips tends to stay the same from day to day
+- If we look on day to day charts, Member rider trip significantly increased on 5am to 9am and on 3pm to 7pm. 
+- We can conclude that most of member rider used cyclistic as transportaion for going to work on weekdays, while most of casual rider used cyclistic only for pleasure. 
 
 **Why would casual riders buy Cyclistic annual memberships?**
+ There is similar trend on casual rider, with increasing ride on 3pm to 9pm. Casual member who use cyclistic for work can be the first target to convert as a member. If a rider use cyclistic as a transportation for going to work it must be a single trip not rounded trip, in other word started station must be different with ended station. We can look how many rider who match these critheria. 
 
+```
+SELECT 
+    member_casual,
+    count(member_casual) AS count_all,
+    SUM(CASE WHEN start_station_name NOT LIKE end_station_name THEN 1 ELSE 0 END) AS count_one_trip
+FROM analyzing-data-319917.bike_capstone_project.year_trip_clean
+WHERE
+    started_time >= '15:00:00' AND 
+    started_time <= '19:00:00'
+GROUP BY member_casual
+```
+![target](https://user-images.githubusercontent.com/90141628/132947809-c91c42a3-42aa-491c-b53e-e97fb4aa18da.PNG)
+
+We can also look for trip distributions for each stationns.
+
+```
+SELECT 
+    start_station_name,
+    SUM(CASE WHEN start_station_name NOT LIKE end_station_name THEN 1 ELSE 0 END) AS count_one_trip,
+    member_casual
+FROM analyzing-data-319917.bike_capstone_project.year_trip_clean
+WHERE
+    started_time >= '15:00:00' AND 
+    started_time <= '19:00:00'
+GROUP BY 
+    start_station_name,
+    member_casual
+ORDER BY count_one_trip DESC 
+```
+
+![trip distribution](https://user-images.githubusercontent.com/90141628/132949122-74c6253b-d5a4-4eae-9dc3-57142a882936.PNG)
 
 
 
