@@ -232,7 +232,7 @@ ORDER BY count_one_trip DESC
 
 From this char we know that distribution of casual rider who tend to used cylistic for going to work in every stations.
 
-### RECOMENDATION
+### RECOMMENDATION
 - Cyccistic can make a marketing campaign that targeted casual rider who use cyclistic for going to work. Give them education about what is benefits if they want to become membership.
 - For casual rider who use cyclistic for pleasure, Cyclistic can give an insentif rent fee on weekends if they want to become annual membership.
 - For a long term campaign, cyclistic can make a long term education about what is benefits of using bike for going to work, because the more users who use bicycles to go to work, the greater the potential for increasing the number of annual memberships. This refers to the characteristics of the annual membership that uses cyclistic as transportaion for going to work on weekdays.
