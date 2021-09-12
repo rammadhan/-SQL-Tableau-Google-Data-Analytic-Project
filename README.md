@@ -193,7 +193,10 @@ Result
 - We can conclude that most of member rider used cyclistic as transportaion for going to work on weekdays, while most of casual rider used cyclistic only for pleasure. 
 
 **Why would casual riders buy Cyclistic annual memberships?**
- There is similar trend on casual rider, with increasing ride on 3pm to 9pm. Casual member who use cyclistic for work can be the first target to convert as a member. If a rider use cyclistic as a transportation for going to work it must be a single trip not rounded trip, in other word started station must be different with ended station. We can look how many rider who match these critheria. 
+
+- There is similar trend on casual rider, with increasing ride on 3pm to 9pm. Casual rider who use cyclistic for work can be the first target to convert as a member, because it is very simmilar to characteristic of member rider. 
+- Second target to be converted to become annual member is casual rider who use cyclistic for pleasure.
+- If a rider use cyclistic as a transportation for going to work, it must be a single trip not rounded trip, in other word started station must be different with ended station. We can look how many rider who match these critheria:
 
 ```
 SELECT 
@@ -208,7 +211,7 @@ GROUP BY member_casual
 ```
 ![target](https://user-images.githubusercontent.com/90141628/132947809-c91c42a3-42aa-491c-b53e-e97fb4aa18da.PNG)
 
-We can also look for trip distributions for each stationns.
+We can also look for trip distributions for each stationns:
 
 ```
 SELECT 
@@ -226,6 +229,14 @@ ORDER BY count_one_trip DESC
 ```
 
 ![trip distribution](https://user-images.githubusercontent.com/90141628/132949122-74c6253b-d5a4-4eae-9dc3-57142a882936.PNG)
+
+From this char we know that distribution of casual rider who tend to used cylistic for going to work in every stations.
+
+### RECOMENDATION
+- Cyccistic can make a marketing campaign that targeted casual rider who use cyclistic for going to work. Give them education about what is benefits if they want to become membership.
+- For casual rider who use cyclistic for pleasure, Cyclistic can give an insentif rent fee on weekends if they want to become annual membership.
+- For a long term campaign, cyclistic can make a long term education about what is benefits of using bike for going to work, because the more users who use bicycles to go to work, the greater the potential for increasing the number of annual memberships. This refers to the characteristics of the annual membership that uses cyclistic as transportaion for going to work on weekdays.
+- We can make a deeper investigation by look at data about each rider behaviour.
 
 
 
