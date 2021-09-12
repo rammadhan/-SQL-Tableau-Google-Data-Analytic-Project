@@ -230,7 +230,7 @@ ORDER BY count_one_trip DESC
 
 ![trip distribution](https://user-images.githubusercontent.com/90141628/132949122-74c6253b-d5a4-4eae-9dc3-57142a882936.PNG)
 
-From this char we know that distribution of casual rider who tend to used cylistic for going to work in every stations.
+From this chart we know that distribution of casual rider who tend to used cylistic for going to work on each stations.
 
 ### RECOMMENDATION
 - Cyccistic can make a marketing campaign that targeted casual rider who use cyclistic for going to work. Give them education about what is benefits if they want to become membership.
